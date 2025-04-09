@@ -1,0 +1,17 @@
+keypath: "id_rsa"
+
+port: "2042"
+
+users:
+  alice: "motdepasse1"
+  bob: "motdepasse2"
+  charlie: "motdepasse3"
+
+nopassdump:
+  - "thiecail"
+  - "nicocour"
+  - "sabigalu"
+  - "rolatouc"
+
+hosts:
+   "192.168.78.99" : "greenbone.si"
