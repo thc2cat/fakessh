@@ -121,26 +121,19 @@ func main() {
 			switch {
 
 			case legit:
-				log.Printf("attempt type Legit '%s/'%s'/%s'",
-					cfg.Hosts[ip], c.User(), string(pass))
+				dolog("Legit", c.User(), string(pass), ip)
 
 			case ipinrange(ip) && !legit:
-				log.Printf("attempt type Local '%s/'%s'/%s'",
-					c.User(), string(pass), ip)
-				inform("local", c.User(), string(pass), ip)
+				dolog("Local", c.User(), string(pass), ip)
 
 			case contains(cfg.NoPassDump, c.User()):
-				log.Printf("attempt type Admin '%s/'*'/%s'", c.User(), ip)
-				inform("admin", c.User(), "", ip)
+				dolog("Admin", c.User(), ip)
 
 			case cfg.Users[c.User()] == string(pass) && len(pass) > 0:
-				log.Printf("attempt type Dict '%s/'%s'/%s'",
-					c.User(), string(pass), ip)
-				inform("dict", c.User(), string(pass), ip)
+				dolog("Dict", c.User(), string(pass), ip)
 
 			default:
-				log.Printf("attempt type Bruteforce '%s/'%s'/%s'",
-					c.User(), string(pass), ip)
+				dolog("Bruteforce", c.User(), string(pass), ip)
 			}
 
 			return nil, fmt.Errorf("access denied")
@@ -197,5 +190,22 @@ func main() {
 				}
 			}(nConn)
 		}
+	}
+}
+
+func dolog(S ...string) {
+	switch len(S) {
+	case 0:
+		return
+	case 1:
+		log.Printf("attempt type=%s ", S[0])
+	case 2:
+		log.Printf("attempt type=%s id=%s", S[0], S[1])
+	case 3:
+		log.Printf("attempt type=%s id=%s ip=%s", S[0], S[1], S[2])
+	case 4:
+		log.Printf("attempt type=%s id=%s auth=\"%s\" ip=%s", S[0], S[1], S[2], S[3])
+	default:
+		log.Printf("Too many fields in %v", S)
 	}
 }
