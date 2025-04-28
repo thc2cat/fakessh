@@ -147,9 +147,8 @@ func main() {
 	}
 	defer listener.Close()
 
-	fmt.Printf("FakeSSH %s server listening on port %s...\n", Version, cfg.Port)
-
 	initSyslog("fakessh")
+	log.Printf("%s server listening on port %s\n", Version, cfg.Port)
 
 	// // Signal handling for graceful shutdown
 	// ctx, cancel := context.WithCancel(context.Background())

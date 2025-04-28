@@ -5,6 +5,14 @@ import (
 	"net"
 )
 
+// var (
+// 	local = []string{ // + your networks
+// 		"10.0.0.0/8",
+// 		"172.16.0.0/12",
+// 		"192.168.0.0/16",
+// 	}
+// )
+
 func ipinrange(ip string) bool {
 	// Check if the IP is in the local range
 	for _, cidr := range local {
