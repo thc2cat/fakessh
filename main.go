@@ -113,6 +113,7 @@ func main() {
 
 	// SSH server configuration
 	config := &ssh.ServerConfig{
+		ServerVersion: cfg.SSHVersion,
 		PasswordCallback: func(c ssh.ConnMetadata, pass []byte) (*ssh.Permissions, error) {
 
 			ip := ipcut(c.RemoteAddr().String())

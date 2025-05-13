@@ -2,6 +2,8 @@ keypath: "id_rsa"
 
 port: "2042"
 
+version: "SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.11"
+
 users:
   alice: "motdepasse1"
   bob: "motdepasse2"
