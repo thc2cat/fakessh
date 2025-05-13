@@ -12,6 +12,7 @@ import (
 type Configuration struct {
 	KeyPath    string            `yaml:"keypath"`
 	Port       string            `yaml:"port"`
+	SSHVersion string            `yaml:"version"`
 	Users      map[string]string `yaml:"users"`
 	NoPassDump []string          `yaml:"nopassdump"`
 	Hosts      map[string]string `yaml:"hosts"`
